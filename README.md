@@ -1,20 +1,28 @@
-# Event Management Platform - Project Overview
+# Conevent - Local Education Events Platform
 
-## Project Goal
+A modern web application that helps students discover and connect with local educational events in their communities.
 
-This is an Event Management Platform that connects universities with students. Universities can create and manage events, while students can discover and apply to participate in these events. The platform facilitates seamless communication between educational institutions and students for event participation and management.
+## 📋 Project Overview
 
-## Key Features
+Conevent is a platform designed to bridge the gap between students and educational opportunities. Whether it's workshops, seminars, coding bootcamps, or academic competitions, students can easily discover and register for events tailored to their interests.
 
-- **Dual User Roles**: Separate authentication and dashboards for Students and Universities
-- **Event Management**: Universities can create, update, and delete events
-- **Event Discovery**: Students can browse and search for university events
-- **Application System**: Students can apply to events and track application status
-- **Application Management**: Universities can review and manage student applications (accept/reject)
-- **Google OAuth Integration**: Secure authentication using Google Sign-In
-- **Profile Management**: Both user types can manage their profiles and information
+## 👥 Team Members
 
-## Technology Stack
+- **Davit Grdzelishvili** - Full Stack Developer
+- **Luka Tskvaradze** - Full Stack Developer
+- **Ani Abashidze** - UI/UX Designer & Developer
+- **Teodore Shotadze** - Backend Developer
+- **Giorgi Abuashvili** - Life Support ❤️ Developer
+
+## 🛠️ Technology Stack
+
+### Frontend
+- **React 18** - UI library
+- **Vite** - Lightning-fast build tool & dev server
+- **TypeScript** - Type-safe JavaScript
+- **TailwindCSS** - Utility-first CSS framework
+- **shadcn/ui** - High-quality, customizable React components
+- **Tanstack React Query** - Powerful server state management & data fetching
 
 ### Backend
 - **Runtime**: Node.js

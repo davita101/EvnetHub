@@ -4,6 +4,7 @@ import { LoginForm } from "./components/login-form";
 import NavigationLayout from "./components/navigation-layout";
 import { RegisterForm } from "./components/register-form";
 import DashboardLayout from "./app/dashboard/page";
+import NotFound from "./NotFound";
 
 export const layout = createBrowserRouter([
   {
@@ -57,12 +58,12 @@ export const layout = createBrowserRouter([
       },
       {
         path: "*",
-        element: <div>Page Not Found</div>,
+        element: <NotFound />,
       },
     ],
   },
   {
     path: "*",
-    element: <div>Page Not Found</div>,
+    element: <NotFound />,
   },
 ]);

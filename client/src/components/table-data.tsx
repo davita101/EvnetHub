@@ -4,7 +4,6 @@ import { type ColumnDef } from "@tanstack/react-table";
 import { ArrowUpDown } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
 import { Badge } from "./ui/badge";
 
 // Generate random sample data for the table
@@ -16,12 +15,12 @@ const SAMPLE_DESCRIPTIONS = [
   "Banquet hall",
   "VIP lounge",
 ];
-const SAMPLE_STATUSES = [
+const SAMPLE_STATUSES: Array<"pending" | "processing" | "success" | "finished"> = [
   "pending",
   "processing",
   "success",
   "finished",
-] as const;
+];
 
 // Company samples
 const COMPANY_TITLES = [

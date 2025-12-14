@@ -1,9 +1,4 @@
-import {
-  BadgeCheck,
-  Bell,
-  ChevronsUpDown,
-  LogOut,
-} from "lucide-react";
+import { BadgeCheck, Bell, ChevronsUpDown, LogOut } from "lucide-react";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
@@ -21,7 +16,7 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar";
-import axios from "axios";
+import { toast } from "sonner";
 
 export function NavUser({
   user,
@@ -33,15 +28,6 @@ export function NavUser({
   };
 }) {
   const { isMobile } = useSidebar();
-  async function handleLogOut() {
-    await axios.post(
-      "http://localhost:3000/api/auth/logout",
-      {},
-      { withCredentials: true }
-    );
-
-    window.location.reload();
-  }
   return (
     <SidebarMenu>
       <SidebarMenuItem>
@@ -81,8 +67,28 @@ export function NavUser({
               </div>
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <DropdownMenuGroup>
-              <DropdownMenuItem>
+            <DropdownMenuGroup
+              onClick={() =>
+                toast("😔", {
+                  description: "არ მუშაობს ვერ მოვასაწრით 😔",
+                  action: {
+                    label: "Undo",
+                    onClick: () => console.log("Undo"),
+                  },
+                })
+              }
+            >
+              <DropdownMenuItem
+                onClick={() =>
+                  toast("😔", {
+                    description: "არ მუშაობს ვერ მოვასაწრით 😔",
+                    action: {
+                      label: "Undo",
+                      onClick: () => console.log("Undo"),
+                    },
+                  })
+                }
+              >
                 <BadgeCheck />
                 Account
               </DropdownMenuItem>
@@ -92,7 +98,17 @@ export function NavUser({
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem onClick={() => handleLogOut()}>
+            <DropdownMenuItem
+              onClick={() =>
+                toast("😔", {
+                  description: "არ მუშაობს ვერ მოვასაწრით 😔",
+                  action: {
+                    label: "Undo",
+                    onClick: () => console.log("Undo"),
+                  },
+                })
+              }
+            >
               <button className="flex items-center gap-2">
                 <LogOut />
                 Log out

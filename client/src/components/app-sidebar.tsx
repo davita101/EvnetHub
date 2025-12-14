@@ -1,6 +1,4 @@
-import axios from "axios";
 import { NavUser } from "./nav-user";
-import { useEffect, useState } from "react";
 
 type User = {
   status: boolean;
@@ -12,21 +10,16 @@ type User = {
 };
 
 export function AppUser() {
-  const [user, setUser] = useState<User | null>(null);
-
-  useEffect(() => {
-    axios
-      .get("http://localhost:3000/api/auth/me", {
-        withCredentials: true,
-      })
-      .then((res) => {
-        setUser(res.data);
-      })
-      .catch(() => {
-        setUser(null);
-      });
-  }, []);
-  if (!user) return null; // or loading / skeleton
+  const user: User = {
+    status: true,
+    user: {
+      name: "student1",
+      email: "grdzelishvilidaivit@gmail.com",
+      avatar:
+        "https://upload.wikimedia.org/wikipedia/en/0/03/Walter_White_S5B.png",
+    },
+  };
+  
 
   return <NavUser user={user?.user} />;
 }

@@ -10,7 +10,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { loginConstant } from "@/constants";
-import axios from "axios";
+import { useMutation } from "@tanstack/react-query";
 
 export function LoginForm({
   className,
@@ -23,26 +23,31 @@ export function LoginForm({
     email: "",
     password: "",
   });
+  const [error, setError] = useState<string | null>(null);
   // ! AUTH
-  async function handleLogin() {
-
-    try {
-      await axios.post(
-        "http://localhost:3000/api/auth/login",
-        {
+  const { mutate: handleLogin, isPending } = useMutation({
+    mutationFn: async () => {
+      const response = await fetch("http://localhost:3000/api/auth/login", {
+        method: "POST",
+        body: JSON.stringify({
           email: userInfo.email,
           password: userInfo.password,
-        },
-        {
-          withCredentials: true,
-        }
-      );
-
+        }),
+        credentials: "include",
+      });
+      if (!response.ok) {
+        const data = await response.json();
+        throw new Error(data.message || "Login failed");
+      }
+      return response.json();
+    },
+    onSuccess: () => {
       window.location.reload(); // ✅ after success
-    } catch (error) {
-      console.error("Login failed", error);
-    }
-  }
+    },
+    onError: (error: Error) => {
+      setError(error.message);
+    },
+  });
   return (
     <div className="flex items-center justify-center h-screen max-w-130  mx-auto ">
       <div className={cn("flex flex-col gap-6 w-full", className)} {...props}>
@@ -55,6 +60,8 @@ export function LoginForm({
                     {loginConstant.heading1}
                   </h1>
                 </div>
+                {isPending && <p className="text-center text-sm text-gray-500">Loading...</p>}
+                {error && <p className="text-center text-sm text-red-500">{error}</p>}
                 <Field>
                   <Input
                     id="email"
@@ -92,8 +99,9 @@ export function LoginForm({
                       handleLogin();
                     }}
                     type="submit"
+                    disabled={isPending}
                   >
-                    {loginConstant.logIn}
+                    {isPending ? "Logging in..." : loginConstant.logIn}
                   </Button>
                 </Field>
                 <FieldSeparator className="*:data-[slot=field-separator-content]:bg-card">

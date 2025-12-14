@@ -76,7 +76,7 @@ export function DataTableDemo() {
     if (dateRange?.from && dateRange?.to) {
       res = res.filter((p) => {
         const itemDate = new Date(p.date);
-        return itemDate >= dateRange.from && itemDate <= dateRange.to;
+        return itemDate >= dateRange.from! && itemDate <= dateRange.to!;
       });
     }
     return res;
